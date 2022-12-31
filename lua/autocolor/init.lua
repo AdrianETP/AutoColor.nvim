@@ -8,6 +8,27 @@ function ChangeColor(values)
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end
 end
+
+function CreateAutoCmd(values)
+    if values.language == ".default" then
+        vim.api.nvim_create_autocmd({ "VimEnter", "BufLeave" }, {
+            callback = function()
+                ChangeColor(values)
+            end,
+            group = "AutoColor"
+        })
+
+    else
+        vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+            pattern = "*" .. values.language,
+            callback = function()
+                ChangeColor(values)
+            end,
+            group = "AutoColor"
+        })
+
+    end
+end
 function M.setup(config)
 
 end
