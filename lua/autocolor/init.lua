@@ -29,8 +29,22 @@ function CreateAutoCmd(values)
 
     end
 end
-function M.setup(config)
 
+function M.setup(config)
+    vim.api.nvim_create_augroup("AutoColor", { clear = true })
+    if not config then
+        return
+
+    else
+        for index, value in ipairs(config) do
+            if not vim.tbl_contains(vim.g.colors, value.theme) then
+                vim.api.nvim_err_writeln("error: theme " .. value.theme .. " does not exist")
+            else
+
+                CreateAutoCmd(value)
+            end
+        end
+    end
 end
 
 return M
