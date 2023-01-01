@@ -1,11 +1,15 @@
 local M = {}
 vim.cmd [[let g:colors = getcompletion('','color')]]
+local ok, lualine = pcall(require, "lualine")
 
 function ChangeColor(values)
     vim.cmd("colorscheme " .. values.theme)
     if values.transparent then
         vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        if ok then
+            lualine.setup()
+        end
     end
 end
 
