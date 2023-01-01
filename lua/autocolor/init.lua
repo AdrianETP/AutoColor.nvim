@@ -11,11 +11,8 @@ function IsFloating()
     end
 
 end
+
 function ChangeColor(values)
-    vim.cmd("colorscheme " .. values.theme)
-    if values.transparent then
-        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     if IsFloating() == false then
         vim.cmd("colorscheme " .. values.theme)
         if values.transparent then
@@ -29,8 +26,8 @@ function ChangeColor(values)
 end
 
 function CreateAutoCmd(values)
-    if values.language == ".default" then
-        vim.api.nvim_create_autocmd({ "VimEnter", "BufLeave" }, {
+    if values.language == "*.default" then
+        vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
             callback = function()
                 ChangeColor(values)
             end,
@@ -38,8 +35,8 @@ function CreateAutoCmd(values)
         })
 
     else
-        vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-            pattern = "*" .. values.language,
+        vim.api.nvim_create_autocmd({ "BufEnter" }, {
+            pattern = values.language,
             callback = function()
                 ChangeColor(values)
             end,
