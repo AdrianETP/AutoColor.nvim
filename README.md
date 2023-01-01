@@ -1,5 +1,7 @@
 # Autocolor
 
+![autocolor](./Example.mov)
+
 - This is a plugin made to change neovim themes based on what filetype you are on
 
 ## install 
