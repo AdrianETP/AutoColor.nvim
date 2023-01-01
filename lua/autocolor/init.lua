@@ -2,11 +2,26 @@ local M = {}
 vim.cmd [[let g:colors = getcompletion('','color')]]
 local ok, lualine = pcall(require, "lualine")
 
+function IsFloating()
+    local conf = vim.api.nvim_win_get_config(0).relative
+    if conf ~= '' then
+        return true
+    else
+        return false
+    end
+
+end
 function ChangeColor(values)
     vim.cmd("colorscheme " .. values.theme)
     if values.transparent then
         vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    if IsFloating() == false then
+        vim.cmd("colorscheme " .. values.theme)
+        if values.transparent then
+            vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+            vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+        end
         if ok then
             lualine.setup()
         end
