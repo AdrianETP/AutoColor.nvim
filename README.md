@@ -37,21 +37,21 @@ end
 
 autocolor.setup({
     {
-        language = ".default", -- default means any filetype not declared on setup
+        language = "*.default", -- default means any filetype not declared on setup
         transparent = true, -- if you want no background (default false)
         theme = "nightfox" --theme name 
     },
     {
-        language = ".js", -- the extension of the filetype (in this case, Javascript)
+        language = "*.lua", -- file extension
+        theme = "lunar"
+    },
+    {
+        language = {"*.js","*.html","*.astro"},  -- you can also pass tables with file entensions
         theme = "lunar"
         -- you can leave the transparent variable out
     },
     {
-        language = ".lua",
-        theme = "lunar"
-    },
-    {
-        language = ".cpp",
+        language = "*.cpp",
         theme = "gruvbox"
     }
 })
@@ -60,6 +60,4 @@ autocolor.setup({
 
 ## Important notes 
 - All themes declared in setup must be installed 
-- Plugins such as [Telescope](https://github.com/nvim-telescope/telescope.nvim) or [Harpoon](https://github.com/ThePrimeagen/harpoon) will default to the default theme
-    - any floating window plugin
 
