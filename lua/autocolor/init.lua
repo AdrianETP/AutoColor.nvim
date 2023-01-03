@@ -1,7 +1,13 @@
+-- final table
 local M = {}
+
+-- get list of available themes
 vim.cmd [[let g:colors = getcompletion('','color')]]
+
+-- call lualine
 local ok, lualine = pcall(require, "lualine")
 
+-- check if current window is a floating window
 function IsFloating()
     local conf = vim.api.nvim_win_get_config(0).relative
     if conf ~= '' then
@@ -12,6 +18,7 @@ function IsFloating()
 
 end
 
+-- change color function
 function ChangeColor(values)
     if IsFloating() == false then
         vim.cmd("colorscheme " .. values.theme)
@@ -25,6 +32,7 @@ function ChangeColor(values)
     end
 end
 
+-- create autocommand for files
 function CreateAutoCmd(values)
     if values.language == "*.default" then
         vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
