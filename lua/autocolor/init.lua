@@ -74,7 +74,7 @@ function M.setup(config)
         for index, value in ipairs(config) do
             -- if theme is not installed
             if not vim.tbl_contains(vim.g.colors, value.theme) then
-                vim.api.nvim_err_writeln("error: theme " .. value.theme .. " does not exist")
+                vim.api.nvim_err_writeln("error: theme " .. value.theme .. " is not installed")
             else
                 -- make autocommand based on variables
                 CreateAutoCmd(value)
