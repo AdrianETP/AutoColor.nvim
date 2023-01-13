@@ -42,7 +42,7 @@ function CreateAutoCmd(values)
     -- check if language is default
     if values.language == "*.default" then
         -- autocommand without patterns
-        vim.api.nvim_create_autocmd({ "VimEnter", "BufEnter" }, {
+        vim.api.nvim_create_autocmd({ "BufEnter" }, {
             callback = function()
                 ChangeColor(values)
             end,
@@ -51,7 +51,7 @@ function CreateAutoCmd(values)
 
     else
         -- autocommand with patterns
-        vim.api.nvim_create_autocmd({ "BufEnter", "VimEnter" }, {
+        vim.api.nvim_create_autocmd({ "BufEnter" }, {
             pattern = values.language,
             callback = function()
                 ChangeColor(values)
