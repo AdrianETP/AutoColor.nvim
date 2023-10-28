@@ -7,12 +7,12 @@
 ### for vimplug 
 
 ```
-Plug 'Adrian-007391/AutoColor'
+Plug 'Adrianetp/AutoColor'
 ```
 ### for packer 
 
 ```lua
-use('Adrian-007391/AutoColor')
+use('Adrianetp/AutoColor')
 ```
 
 ## Setup 
